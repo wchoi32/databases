@@ -14,3 +14,5 @@ dbConnection.connect(function(err) {
   if (err) throw err;
   console.log('this is connected');
 });
+
+exports.dbConnection = dbConnection;
