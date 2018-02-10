@@ -1,5 +1,7 @@
 var models = require('../models');
 
+//this is handling the client side 
+
 module.exports = {
   messages: {
     get: function (req, res) {}, // a function which handles a get request for all messages

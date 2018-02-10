@@ -1,6 +1,7 @@
-CREATE DATABASE IF NOT EXISTS chatd;
+DROP DATABASE chat;
+CREATE DATABASE IF NOT EXISTS chat;
 
-USE chatd; 
+USE chat; 
 
 DROP TABLE IF EXISTS usernames;
 DROP TABLE IF EXISTS rooms;
@@ -23,13 +24,6 @@ CREATE TABLE messages (
   PRIMARY KEY (message_id),
   FOREIGN KEY (username_id) REFERENCES usernames(username_id)
 );
-
-/* Create other tables and define schemas for them here! */
--- CREATE TABLE usernames (
---   username_id INTEGER NOT NULL,
---   username TEXT NOT NULL,
---   PRIMARY KEY (username_id)
--- );
 
 CREATE TABLE rooms (
   room_id INTEGER NOT NULL,
