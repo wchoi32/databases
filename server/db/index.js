@@ -15,4 +15,4 @@ dbConnection.connect(function(err) {
   console.log('this is connected');
 });
 
-exports.dbConnection = dbConnection;
+module.exports = dbConnection;

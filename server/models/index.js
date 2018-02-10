@@ -5,10 +5,17 @@ var promise = require('bluebird');
 
 module.exports = {
   messages: {
-    get: function () {
-
+    get: function (callback) {
+      // db.query('SELECT message FROM messages ')
+  db.query('select * from messages', (error, results) => {
+  //console.log('coming form model /index.js', results);
+})
     }, // a function which produces all the messages
     post: function () {
+      db.query('INSERT INTO message FROM messages VALUES', (error, results) => {
+        if (error) console.log('something went wrong', error);
+        //console.log('coming from server model index.js', results);
+      });
     // post: function (req, res) {
       // console.log(re)
       // db.query(queryString, queryArgs, function(err, results) {
@@ -20,8 +27,15 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function (name, callback) {
+      // db.query('SELECT username FROM usernames ON ');
+    },
+    post: function (body) {
+      db.query('INSERT INTO usernames (username) VALUES ("' + body.username + '")', (error, results) => {
+        if (error) console.log('something went wrong', error);
+        //console.log('coming from server model index.js', results.body.username);
+      });
+    }
   }
 };
 
