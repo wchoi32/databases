@@ -5,16 +5,22 @@ var promise = require('bluebird');
 module.exports = {
   messages: {
     get: function (req, res) {
-      models.messages.get(function(data) {
-      // console.log('from controlle index.js wtfsdfsd', data)
-        res.json(data);
+      models.messages.get(function(err, data) {
+        if (err) { throw err; }
+        // console.log('from controlle index.js wtfsdfsd', data)
+        res.send(data);
       });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      //console.log('still from controller index.js', req);
-      var postMessage = req.body;
-      models.messages.post(postMessage, function() {
-        res.send(postMessage);
+      // console.log('still from controller index.js', req);
+      var postMessage = req.body.message;
+      //console.log(postMessage);
+      models.messages.post(postMessage, function(err, data) {
+        if (err) { 
+          throw err; 
+        } else {
+          res.send(data);
+        }
       });
     } // a function which handles posting a message to the database
   },
@@ -23,20 +29,26 @@ module.exports = {
     // Ditto as above
     get: function (req, res) {
       //console.log('res body: ', req.body, 'res: ', res);
-      models.users.get(function(data) {
+      models.users.get(function(err, data) {
+        if (err) { throw err; }
         res.json(data);
       });  
     },
     post: function (req, res) {
-      console.log('res body: ', req.body);
-      var user = req.body;
-      models.users.post(user, function() {
-        res.send(user);
+      //console.log('res body: ', req.body);
+      var user = req.body.username;
+      models.users.post(user, function(err, data) {
+        if (err) { 
+          console.log(err);
+          throw err; 
+        } else { 
+          //console.log(data)
+          res.send(data); 
+        }
       });
     }
   }
 };
-
 
 // var http = require("http");
 // var options = {
